@@ -80,7 +80,7 @@ class MyWebServer(socketserver.BaseRequestHandler):
                 #check if the path has '/' at the end. If not, redirect and add '/' to the end.
                 if (val[-1]!= '/'):
                     infopath += "/"
-                    redirect_info = "HTTP/1.1 301 Moved Permanently\nLocation: localhost:8080" + val
+                    redirect_info = "HTTP/1.1 301 Moved Permanently\nLocation: http://127.0.0.1:8080" + val + "/\n\n"
                     self.request.sendall(bytearray(redirect_info,'utf-8'))
 
                 #Add /index.html to the ending of the path
