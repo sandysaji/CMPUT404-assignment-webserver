@@ -67,7 +67,6 @@ class MyWebServer(socketserver.BaseRequestHandler):
                     pageInfo = open(infopath).read()
                     contentlen = len(pageInfo)
                     output = ("HTTP/1.1 200 OK\nContent-Type: " +content+ "\nContent-Length: " + str(contentlen) + "\nConnection: Closed\n\n"+pageInfo)
-                    print(output)
                     self.request.sendall(bytearray(output,'utf-8'))
                 else:
                 #Path extension ending is not css or html. Raise 404 Page Not Found Error.
@@ -93,7 +92,6 @@ class MyWebServer(socketserver.BaseRequestHandler):
                 pageInfo = open(infopath).read()
                 contentlen = len(pageInfo)
                 output = ("HTTP/1.1 200 OK\nContent-Type: " +content+ "\nContent-Length: " +  str(contentlen) + "\nConnection: Closed\n\n"+pageInfo)
-                print(output)
                 self.request.sendall(bytearray(output,'utf-8'))
                 
 
