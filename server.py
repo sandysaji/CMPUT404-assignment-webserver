@@ -46,7 +46,6 @@ class MyWebServer(socketserver.BaseRequestHandler):
         if (http_request[0].decode('utf-8') == "GET"):
             infopath = os.path.abspath('www')
             infopath += http_request[1].decode('utf-8')
-            print(infopath)
 
 
 
@@ -58,6 +57,7 @@ class MyWebServer(socketserver.BaseRequestHandler):
                 if (ext[1] == ".html"):
                     content = "text/html"
                     pageInfo = open(infopath).read()
+                    contentlen = len(pageInfo)
                     output = ("HTTP/1.1 200 OK\nContent-Type: " +content+ "\nConnection: Closed\n\n"+pageInfo)
                     self.request.sendall(bytearray(output,'utf-8'))
                 
@@ -65,7 +65,9 @@ class MyWebServer(socketserver.BaseRequestHandler):
                 elif (ext[1] == ".css"):
                     content = "text/css"
                     pageInfo = open(infopath).read()
-                    output = ("HTTP/1.1 200 OK\nContent-Type: " +content+ "\nConnection: Closed\n\n"+pageInfo)
+                    contentlen = len(pageInfo)
+                    output = ("HTTP/1.1 200 OK\nContent-Type: " +content+ "\nContent-Length: " + str(contentlen) + "\nConnection: Closed\n\n"+pageInfo)
+                    print(output)
                     self.request.sendall(bytearray(output,'utf-8'))
                 else:
                 #Path extension ending is not css or html. Raise 404 Page Not Found Error.
@@ -89,7 +91,9 @@ class MyWebServer(socketserver.BaseRequestHandler):
                
                 content = "text/html"
                 pageInfo = open(infopath).read()
-                output = ("HTTP/1.1 200 OK\nContent-Type: " +content+ "\nConnection: Closed\n\n"+pageInfo)
+                contentlen = len(pageInfo)
+                output = ("HTTP/1.1 200 OK\nContent-Type: " +content+ "\nContent-Length: " +  str(contentlen) + "\nConnection: Closed\n\n"+pageInfo)
+                print(output)
                 self.request.sendall(bytearray(output,'utf-8'))
                 
 
