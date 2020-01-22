@@ -30,6 +30,16 @@ import socketserver, os
 # https://www.tutorialspoint.com/http/http_responses.htm
 # https://stackoverflow.com/questions/541390/extracting-extension-from-filename-in-python
 
+# Links Used to complete the assignment.
+# Tutorialspoint - https://www.tutorialspoint.com/http/http_responses.htm
+#  - Used the link to get a better idea about the elements send in an http_response.
+  
+# owner - nosklo ,stackoverflow https://stackoverflow.com/questions/541390/extracting-extension-from-filename-in-python
+#  - Used the method to get file extensions from a path.
+
+#  python documentation - https://docs.python.org/2/library/os.path.html
+#  - used this to get the path, check if path is dir or file.
+
 
 
 
@@ -69,7 +79,7 @@ class MyWebServer(socketserver.BaseRequestHandler):
                     output = ("HTTP/1.1 200 OK\nContent-Type: " +content+ "\nContent-Length: " + str(contentlen) + "\nConnection: Closed\n\n"+pageInfo)
                     self.request.sendall(bytearray(output,'utf-8'))
                 else:
-                #Path extension ending is not css or html. Raise 404 Page Not Found Error.
+                #Path extension ending is not css or html. Raise 404 Not Found Error.
                     content = "text/html"
                     output = ("HTTP/1.1 404 Not Found \nContent-Type: " +content+"\nConnection: Closed\n\n"+ "<!DOCTYPE HTML>\n<html>\n<head>\n <title>404 Not Found</title>\n</head>\n<body>\n <h1>Not Found</h1>\n  <p>The requested URL was not found on this server.</p>\n</body></html>")
                     self.request.sendall(bytearray(output,'utf-8'))
@@ -86,8 +96,6 @@ class MyWebServer(socketserver.BaseRequestHandler):
 
                 #Add /index.html to the ending of the path
                 infopath += "index.html"
-
-               
                 content = "text/html"
                 pageInfo = open(infopath).read()
                 contentlen = len(pageInfo)
