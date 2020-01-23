@@ -10,6 +10,7 @@ Make a simple webserver.
 Contributors / Licensing
 ========================
 
+
 Generally everything is LICENSE'D under the Apache 2 license by Abram Hindle.
 
 server.py contains contributions from:
@@ -33,4 +34,7 @@ Links Used for external source code.
 
 # python documentation - https://docs.python.org/2/library/os.path.html
  - used this to get the path, check if path is dir or file.
+ 
+# collaborator
+    Dhruba Chowdhury
 
